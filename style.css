@@ -1,0 +1,23 @@
+main {
+    display: grid;
+    grid-template-rows: 1fr 7fr;
+    grid-auto-rows: 200px;
+    column-gap: 10px;
+    grid-auto-columns: 250px;
+}
+
+.book-container {
+    display: grid;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    grid-auto-flow: column;
+    column-gap: 20px;
+}
+
+.book {
+    height: 150px;
+    width: 100px;
+    background-color: rgb(114, 69, 69);
+    color: white;
+    outline: solid black 1px;
+}
