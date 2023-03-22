@@ -2,10 +2,18 @@ let myLibrary = [];
 const addBookButton = document.querySelector("#add-book");
 const shelf = document.querySelector(".book-container");
 const bookOnShelf = document.querySelector(".book");
+const form = document.querySelector("form");
+const formExitButton = form.querySelector(".exit");
+const bookTitle = document.querySelector(".")
+
+
 
 addBookButton.addEventListener("click", () => {
-  addBookToLibrary();
+  //addBookToLibrary();
+  form.classList.add("active");
 });
+
+formExitButton.addEventListener("click", () => form.classList.remove("active"));
 
 function Book(title, author, pages, read) {
 // the constructor...
@@ -14,9 +22,6 @@ function Book(title, author, pages, read) {
   this.pages = pages,
   this.read = read;
 }
-
-
-
 
 function getBookInfo() {
   const title = prompt("Enter a book title.", "Title");
@@ -37,21 +42,27 @@ function addBookToLibrary() {
   const newBook = createBook();
   myLibrary.push(newBook);
 }
+function setBookIndex(book, counter) {
+    book.setAttribute("data-index", `${counter}`);
+    console.log(this);
+}
+
+function clearDisplay() {
+  const removeDomBooks = document.querySelectorAll(".book-container > *");
+  removeDomBooks.forEach(book => book.remove());
+  
+}
 
 //loops through myLibrary array and displays each book
-
 function displayBooks() {
-  const counter = myLibrary.length;
-
-  for(let i = 0; i < counter; i++) {
+  clearDisplay();
+  
+   
+  for(let i = 0; i < myLibrary.length; i++) {
     const book = document.createElement("div");
     book.className = "book";
     book.innerText = myLibrary[i].title;
+    setBookIndex(book, i);
     shelf.appendChild(book);
   }
-
-}
-
-function createBookCardElements() {
-  bookOnShelf.appendChild(document.createElement("p"));
 }
