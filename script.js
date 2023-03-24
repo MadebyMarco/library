@@ -32,7 +32,8 @@ submitButton.addEventListener("click", (event) => {
   displayBooks();
   hideForm();
   clearFormInputs();
-  addButtonToBooksOnDisplay();
+  addButtonsToBooksOnDisplay();
+  testNewSetIndex();
 })
 
 
@@ -89,7 +90,7 @@ function displayBooks() {
     const book = document.createElement("div");
     book.className = "book";
     book.innerText = myLibrary[i].title;
-    setBookIndex(book, i);
+    // setBookIndex(book, i);
     shelf.appendChild(book);
   }
 }
@@ -102,22 +103,50 @@ function clearFormInputs() {
   bookGenre.value = "";
 }
 
-function addButtonToBooksOnDisplay() {
-  const booksOnDisplay = document.querySelectorAll(".book");
+function getBooksOnDisplay() {
+  return document.querySelectorAll(".book");
+}
 
-  booksOnDisplay.forEach(book => {
-    const removeBookButton = document.createElement("button");
-    removeBookButton.textContent = "Remove";
-    removeBookButton.classList.add("removeBookButton");
+function addButtonsToBooksOnDisplay() {
+  createRemoveButton();
+  // createReadStatusButton();
+}
+
+function createRemoveButton() {
+  getBooksOnDisplay().forEach(book => {
+    const removeBookButton = document.createElement("button"); //creates button
+    removeBookButton.textContent = "Remove"; //adds "remove" inside the button
+    removeBookButton.classList.add("removeBookButton"); //gives button the removeBookButton css class
+
     
     removeBookButton.addEventListener("click", (e) => {
-      const parentIndex = e.target.parentNode.getAttribute("data-index")
-      console.log(parentIndex)
-      e.target.parentNode.remove();
-      myLibrary.splice(parentIndex, 1);
+      const parentIndex = e.target.parentNode.getAttribute("data-index"); //gets index of book
+      console.log(parentIndex);
+      e.target.parentNode.remove(); //removes book from display
+      myLibrary.splice(parentIndex, 1); //removes book from myLibrary array
+      // !!!!! Need to reindex after deleting a book
+      for(let i = 0; i < myLibrary.length; i++) {;
+        setBookIndex(getBooksOnDisplay()[i], i);
+      }
+
     });
-    
+
     book.appendChild(removeBookButton);
   });
 }
 
+
+
+// function createReadStatusButton() {
+// getBooksOnDisplay().forEach(book => {
+//   const readStatusButton = document.createElement("button");
+
+
+//   readStatusButton.textContent = e.target.parentNode.bookReadStatus.value;
+// 
+
+function testNewSetIndex() {
+  for(let i = 0; i < myLibrary.length; i++) {
+      getBooksOnDisplay()[i].setAttribute("data-index", `${i}`);
+      }
+    };
