@@ -102,8 +102,11 @@ function clearFormInputs() {
 
 function addButtonToBooksOnDisplay() {
   const booksOnDisplay = document.querySelectorAll(".book");
-  
-  const removeBookButton = document.createElement("button");
-  removeBookButton.textContent = "Remove";
-  booksOnDisplay.forEach(book => book.appendChild(removeBookButton));
+
+  booksOnDisplay.forEach(book => {
+    const removeBookButton = document.createElement("button");
+    removeBookButton.textContent = "Remove";
+    removeBookButton.classList.add("removeBookButton");
+    book.appendChild(removeBookButton)
+  });
 }
