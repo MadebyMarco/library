@@ -21,3 +21,11 @@ main {
     color: white;
     outline: solid black 1px;
 }
+
+form {
+    opacity: 0;
+}
+
+.active {
+    opacity: 1;
+}
