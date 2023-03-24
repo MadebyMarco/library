@@ -1,7 +1,6 @@
 let myLibrary = [];
 
 const shelf = document.querySelector(".book-container");
-const bookOnShelf = document.querySelector(".book");
 const form = document.querySelector("form");
 
 const addBookButton = document.querySelector("#add-book");
@@ -22,7 +21,10 @@ addBookButton.addEventListener("click", () => {
   form.classList.add("active");
 });
 
-formExitButton.addEventListener("click", () => hideForm());
+formExitButton.addEventListener("click", () => {
+  hideForm();
+  clearFormInputs();
+});
 
 submitButton.addEventListener("click", (event) => {
   event.preventDefault();
@@ -107,6 +109,15 @@ function addButtonToBooksOnDisplay() {
     const removeBookButton = document.createElement("button");
     removeBookButton.textContent = "Remove";
     removeBookButton.classList.add("removeBookButton");
-    book.appendChild(removeBookButton)
+    
+    removeBookButton.addEventListener("click", (e) => {
+      const parentIndex = e.target.parentNode.getAttribute("data-index")
+      console.log(parentIndex)
+      e.target.parentNode.remove();
+      myLibrary.splice(parentIndex, 1);
+    });
+    
+    book.appendChild(removeBookButton);
   });
 }
+
