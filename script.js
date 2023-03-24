@@ -1,11 +1,20 @@
 let myLibrary = [];
-const addBookButton = document.querySelector("#add-book");
+
 const shelf = document.querySelector(".book-container");
 const bookOnShelf = document.querySelector(".book");
 const form = document.querySelector("form");
-const formExitButton = form.querySelector(".exit");
-const bookTitle = document.querySelector(".")
 
+const addBookButton = document.querySelector("#add-book");
+const formExitButton = form.querySelector(".exit");
+const submitButton = form.querySelector("button[type=submit]");
+
+const bookTitle = document.querySelector("#bookTitle");
+const bookPages = document.querySelector("#bookPages");
+const bookAuthor = document.querySelector("#bookAuthor");
+const bookReadStatus = document.querySelector("#readStatus");
+const bookGenre = document.querySelector("#bookGenre");
+
+// take form.value's and then put them into the book constructor. 
 
 
 addBookButton.addEventListener("click", () => {
@@ -13,29 +22,46 @@ addBookButton.addEventListener("click", () => {
   form.classList.add("active");
 });
 
-formExitButton.addEventListener("click", () => form.classList.remove("active"));
+formExitButton.addEventListener("click", () => hideForm());
 
-function Book(title, author, pages, read) {
+submitButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  addBookToLibrary();
+  displayBooks();
+  hideForm();
+  clearFormInputs();
+  addButtonToBooksOnDisplay();
+})
+
+
+function Book(title, author, pages, read, genre) {
 // the constructor...
   this.title = title,
   this.author = author,
   this.pages = pages,
   this.read = read;
+  this.genre = genre;
 }
-
+/** No need for getting info from prompts/different funciton
+ * 
 function getBookInfo() {
-  const title = prompt("Enter a book title.", "Title");
-  const author = prompt("Enter the author's name.", "Name");
-  const pages = prompt("Enter the number of pages it has.", 0);
-  const read = prompt("Have you read this book?", "Yes or No");
+  const title = bookTitle.value;
+  const author = bookAuthor.value;
+  const pages = bookPages.value;
+  const read = bookReadStatus.value;
   
   const infoArray = [title, author, pages, read];
+  console.log(infoArray);
   return infoArray;
+}
+*/
+
+function hideForm() {
+  form.classList.remove("active")
 }
 
 function createBook() {
-  const bookInfo = getBookInfo();
-  return new Book(bookInfo[0], bookInfo[1],bookInfo[2], bookInfo[3]);
+  return new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookReadStatus.value, bookGenre.value);
 }
 
 function addBookToLibrary() {
@@ -44,7 +70,6 @@ function addBookToLibrary() {
 }
 function setBookIndex(book, counter) {
     book.setAttribute("data-index", `${counter}`);
-    console.log(this);
 }
 
 function clearDisplay() {
@@ -65,4 +90,20 @@ function displayBooks() {
     setBookIndex(book, i);
     shelf.appendChild(book);
   }
+}
+
+function clearFormInputs() {
+  bookTitle.value = "";
+  bookAuthor.value = "";
+  bookPages.value = "";
+  bookReadStatus.value = "";
+  bookGenre.value = "";
+}
+
+function addButtonToBooksOnDisplay() {
+  const booksOnDisplay = document.querySelectorAll(".book");
+  
+  const removeBookButton = document.createElement("button");
+  removeBookButton.textContent = "Remove";
+  booksOnDisplay.forEach(book => book.appendChild(removeBookButton));
 }
