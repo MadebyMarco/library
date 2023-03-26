@@ -30,11 +30,12 @@ submitButton.addEventListener("click", (event) => {
   event.preventDefault();
   addBookToLibrary();
   displayBooks();
+  setBookIndex(); //Calling setbook index AFTER my buttons created horrible confusion before I realized my error.
   hideForm();
   clearFormInputs();
-  addButtonsToBooksOnDisplay();
-  setBookIndex();
-  labelReadStatusButtons();
+  createRemoveButton();
+  createReadStatusButton();
+  // labelReadStatusButtons();
 })
 
 
@@ -130,10 +131,6 @@ function getBooksOnDisplay() {
   return document.querySelectorAll(".book");
 }
 
-function addButtonsToBooksOnDisplay() {
-  createRemoveButton();
-  createReadStatusButton();
-}
 
 function createRemoveButton() {
   getBooksOnDisplay().forEach(book => {
@@ -162,17 +159,13 @@ getBooksOnDisplay().forEach(book => {
   book.appendChild(readStatusButton);
   console.log(book.dataset.index);
   
+  readStatusButton.textContent = myLibrary[book.dataset.index].getReadStatus();
+
+  readStatusButton.addEventListener("click", (e) => {
+    myLibrary[book.dataset.index].changeReadStatus();
+    readStatusButton.textContent = myLibrary[book.dataset.index].read;
+  })
 })
 //find a way to set textContent to equal the books read status
 //i think I can get the book index, slap it in -> myLibrary[book index] -> get value with myLibrary[bookIndex].read -> put that into the text content;
 }
-
-function labelReadStatusButtons() {
-  const readStatusButtons = document.querySelectorAll(".readStatusButton");
-  readStatusButtons.forEach((button) => {
-  const buttonIndex = button.parentNode.dataset.index;
-  button.textContent = myLibrary[buttonIndex].read;
-
-    
-  });
-};
