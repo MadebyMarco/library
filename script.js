@@ -33,7 +33,8 @@ submitButton.addEventListener("click", (event) => {
   hideForm();
   clearFormInputs();
   addButtonsToBooksOnDisplay();
-  testNewSetIndex();
+  setBookIndex();
+  labelReadStatusButtons();
 })
 
 
@@ -44,6 +45,20 @@ function Book(title, author, pages, read, genre) {
   this.pages = pages,
   this.read = read;
   this.genre = genre;
+}
+
+Book.prototype.getReadStatus = function() {
+  return this.read;
+}
+
+Book.prototype.changeReadStatus = function() {
+  const readStatus = this.read;
+
+  if(readStatus == "Read") {
+    this.read = "Not read";
+  } else if(readStatus == "Not read") {
+    this.read = "Read";
+  }
 }
 /** No need for getting info from prompts/different funciton
  * 
@@ -71,9 +86,17 @@ function addBookToLibrary() {
   const newBook = createBook();
   myLibrary.push(newBook);
 }
-function setBookIndex(book, counter) {
-    book.setAttribute("data-index", `${counter}`);
-}
+
+// function setBookIndex(book, counter) {
+//     book.setAttribute("data-index", `${counter}`);
+// }
+
+
+function setBookIndex() {
+  for(let i = 0; i < myLibrary.length; i++) {
+      getBooksOnDisplay()[i].setAttribute("data-index", `${i}`);
+  }
+};
 
 function clearDisplay() {
   const removeDomBooks = document.querySelectorAll(".book-container > *");
@@ -109,7 +132,7 @@ function getBooksOnDisplay() {
 
 function addButtonsToBooksOnDisplay() {
   createRemoveButton();
-  // createReadStatusButton();
+  createReadStatusButton();
 }
 
 function createRemoveButton() {
@@ -121,14 +144,9 @@ function createRemoveButton() {
     
     removeBookButton.addEventListener("click", (e) => {
       const parentIndex = e.target.parentNode.getAttribute("data-index"); //gets index of book
-      console.log(parentIndex);
       e.target.parentNode.remove(); //removes book from display
       myLibrary.splice(parentIndex, 1); //removes book from myLibrary array
-      // !!!!! Need to reindex after deleting a book
-      for(let i = 0; i < myLibrary.length; i++) {;
-        setBookIndex(getBooksOnDisplay()[i], i);
-      }
-
+      setBookIndex();// reindexes books
     });
 
     book.appendChild(removeBookButton);
@@ -137,16 +155,24 @@ function createRemoveButton() {
 
 
 
-// function createReadStatusButton() {
-// getBooksOnDisplay().forEach(book => {
-//   const readStatusButton = document.createElement("button");
+function createReadStatusButton() {
+getBooksOnDisplay().forEach(book => {
+  const readStatusButton = document.createElement("button");
+  readStatusButton.classList.add("readStatusButton");
+  book.appendChild(readStatusButton);
+  console.log(book.dataset.index);
+  
+})
+//find a way to set textContent to equal the books read status
+//i think I can get the book index, slap it in -> myLibrary[book index] -> get value with myLibrary[bookIndex].read -> put that into the text content;
+}
 
+function labelReadStatusButtons() {
+  const readStatusButtons = document.querySelectorAll(".readStatusButton");
+  readStatusButtons.forEach((button) => {
+  const buttonIndex = button.parentNode.dataset.index;
+  button.textContent = myLibrary[buttonIndex].read;
 
-//   readStatusButton.textContent = e.target.parentNode.bookReadStatus.value;
-// 
-
-function testNewSetIndex() {
-  for(let i = 0; i < myLibrary.length; i++) {
-      getBooksOnDisplay()[i].setAttribute("data-index", `${i}`);
-      }
-    };
+    
+  });
+};
