@@ -1,17 +1,51 @@
+:root {
+    --main-color: rgb(131, 94, 4);
+    --accent-color: darkgreen;
+}
+
+* {
+    font-family: Helvetica, sans-serif;
+}
+
 main {
     display: grid;
-    grid-template-rows: 1fr 7fr;
-    grid-auto-rows: 200px;
-    column-gap: 10px;
-    grid-auto-columns: 250px;
+    row-gap: 50px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+h1.header {
+    margin: 0px;
+    margin-top: 50px;
+    font-size: 70px;
+    font-weight: 700;
+    justify-self: center;
+}
+
+button#add-book {
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+    border: none;
+    box-shadow: 2px 2px 5px 5px rgb(0 0 0 / 15%);
+    background-color: rgb(131, 91, 4);
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
 }
 
 .book-container {
-    display: grid;
-    grid-column: 2 / 3;
+    --side-margin: 250px;
+    display: flex;
     grid-row: 2 / 3;
-    grid-auto-flow: column;
+    row-gap: 20px;
     column-gap: 20px;
+    flex-flow: row wrap;
+    margin: 0 var(--side-margin) 0 var(--side-margin);
 }
 
 .book {
@@ -24,7 +58,7 @@ main {
     background-color: rgb(131, 91, 4);
     color: white;
     outline: solid black 1px;
-    
+    box-shadow: 2px 2px 5px 5px rgb(0 0 0 / 15%);
     border-radius: 5px;
     
     display: flex;
@@ -36,11 +70,74 @@ main {
 }
 
 form {
-    opacity: 0;
+    opacity: 1;
+    position: absolute;
+    top: -1000%;
+    left: -1000%;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    row-gap: 5px;
+}
+form button.exit {
+    background-color: darkgreen;
+    color: white;
+}
+
+form button.exit:hover {
+    background-color: white;
+    color:darkgreen;
+}
+
+form button.exit:active {
+    color: rgb(131, 91, 4);
+    background-color: rgb(131, 91, 4) ;
+    border-color: rgb(131, 91, 4);
+}
+
+form button[type=submit]:hover {
+    background-color: darkgreen;
+    color: white;
+}
+
+form button[type=submit]:active {
+    color: rgb(131, 91, 4);
+    background-color: rgb(131, 91, 4) ;
+    border-color: rgb(131, 91, 4);
+}
+
+form button {
+    font-weight: 900;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: rgb(23, 90, 23);
+    background-color: white;
+    border: 2px darkgreen solid;
+}
+
+
+form label {
+    font-weight: 700;
+    color: darkgreen;
+}
+
+form div {
+    display: flex;
+    column-gap: 25px;
+    align-items: center;
+    justify-content: center;
 }
 
 .active {
     opacity: 1;
+    background: white;
+    left: 40%;
+    top: 40%;
+    position: absolute;
+    border-radius: 10px;
+    padding: 20px 60px;
+    box-shadow: 2px 2px 5px 5px rgb(0 0 0 / 15%);
 }
 
 .book button {
