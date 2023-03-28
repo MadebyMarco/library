@@ -1,6 +1,13 @@
 :root {
-    --main-color: rgb(131, 94, 4);
-    --accent-color: darkgreen;
+    --main-color: #412722 ;
+    --accent-color: #DFA06E;
+    --exit-button-color: #DF2935;
+    --submit-button-color: #86BA90;
+}
+
+body {
+    margin: 0;
+    background-color: #F5F3BB;
 }
 
 * {
@@ -21,6 +28,7 @@ h1.header {
     font-size: 70px;
     font-weight: 700;
     justify-self: center;
+    color: var(--main-color);
 }
 
 button#add-book {
@@ -79,13 +87,15 @@ form {
     row-gap: 5px;
 }
 form button.exit {
-    background-color: var(--accent-color);
-    color: white;
+    background-color: var(--main-color);
+    color: var(--exit-button-color);
+    border: 2px var(--exit-button-color) solid;
+    margin-bottom: 25px;
 }
 
 form button.exit:hover {
-    background-color: white;
-    color:var(--accent-color);
+    background-color: var(--exit-button-color);
+    color:var(--main-color);
 }
 
 form button.exit:active {
@@ -94,9 +104,17 @@ form button.exit:active {
     border-color: var(--main-color);
 }
 
+
+form button[type=submit] {
+    background-color: var(--main-color);
+    color: var(--submit-button-color);
+    border: 2px var(--submit-button-color) solid;
+    margin-top: 25px;
+}
+
 form button[type=submit]:hover {
-    background-color: var(--accent-color);
-    color: white;
+    background-color: var(--submit-button-color);
+    color: var(--main-color);
 }
 
 form button[type=submit]:active {
@@ -110,9 +128,6 @@ form button {
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
-    color: var(--accent-color);
-    background-color: white;
-    border: 2px var(--accent-color) solid;
 }
 
 
@@ -130,7 +145,8 @@ form div {
 
 .active {
     opacity: 1;
-    background: white;
+    background: var(--main-color);
+    color: var(--accent-color);
     left: 40%;
     top: 40%;
     position: absolute;
