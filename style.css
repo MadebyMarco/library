@@ -29,7 +29,7 @@ button#add-book {
     border-radius: 100px;
     border: none;
     box-shadow: 2px 2px 5px 5px rgb(0 0 0 / 15%);
-    background-color: rgb(131, 91, 4);
+    background-color: var(--main-color);
     color: white;
     font-size: 20px;
     font-weight: 700;
@@ -55,9 +55,8 @@ button#add-book {
     height: 150px;
     width: 100px;
     
-    background-color: rgb(131, 91, 4);
+    background-color: var(--main-color);
     color: white;
-    outline: solid black 1px;
     box-shadow: 2px 2px 5px 5px rgb(0 0 0 / 15%);
     border-radius: 5px;
     
@@ -80,30 +79,30 @@ form {
     row-gap: 5px;
 }
 form button.exit {
-    background-color: darkgreen;
+    background-color: var(--accent-color);
     color: white;
 }
 
 form button.exit:hover {
     background-color: white;
-    color:darkgreen;
+    color:var(--accent-color);
 }
 
 form button.exit:active {
-    color: rgb(131, 91, 4);
-    background-color: rgb(131, 91, 4) ;
-    border-color: rgb(131, 91, 4);
+    color: var(--main-color);
+    background-color: var(--main-color) ;
+    border-color: var(--main-color);
 }
 
 form button[type=submit]:hover {
-    background-color: darkgreen;
+    background-color: var(--accent-color);
     color: white;
 }
 
 form button[type=submit]:active {
-    color: rgb(131, 91, 4);
-    background-color: rgb(131, 91, 4) ;
-    border-color: rgb(131, 91, 4);
+    color: var(--main-color);
+    background-color: var(--main-color) ;
+    border-color: var(--main-color);
 }
 
 form button {
@@ -111,15 +110,15 @@ form button {
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
-    color: rgb(23, 90, 23);
+    color: var(--accent-color);
     background-color: white;
-    border: 2px darkgreen solid;
+    border: 2px var(--accent-color) solid;
 }
 
 
 form label {
     font-weight: 700;
-    color: darkgreen;
+    color: var(--accent-color);
 }
 
 form div {
@@ -145,11 +144,11 @@ form div {
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
-    color: rgb(23, 90, 23);
+    color: var(--accent-color);
     background-color: white
 }
 
 .book button:hover {
     color: white;
-    background-color:rgb(23, 90, 23);
+    background-color: var(--accent-color);
 }
