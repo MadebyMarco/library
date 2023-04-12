@@ -38,13 +38,14 @@ submitButton.addEventListener("click", (event) => {
   createReadStatusButton();
 })
 
-
-function Book(title, author, pages, read, genre) {
-  this.title = title,
-  this.author = author,
-  this.pages = pages,
-  this.read = read;
-  this.genre = genre;
+class Book{
+  constructor (title, author, pages, read, genre) {
+    this.title = title,
+    this.author = author,
+    this.pages = pages,
+    this.read = read;
+    this.genre = genre;
+  }
 }
 
 Book.prototype.getReadStatus = function() {
