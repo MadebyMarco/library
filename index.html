@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
     <title>Library</title>
-</head>
-<body>
-    <form action="">
-        <h1>New book</h1>
-        <button type="button" class="exit">X</button>
-        <div>
-            <label for="bookTitle">Title</label>
-            <input id="bookTitle" type="text">
-        </div>
-        <div>
-            <label for="bookAuthor">Author</label>
-            <input id="bookAuthor"   type="text">
-        </div>
-        <div>
-            <label for="bookPages">Number of pages</label>
-            <input id="bookPages" type="number">
-        </div>
-        <div>
-            <label for="readStatus">Read</label>
-            <input id="readStatus" type="checkbox" checked>
-        </div>
-        <div>
-            <label for="bookGenre">Genre</label>
-            <input id="bookGenre" type="text">
-        </div>
-        <button type="submit">Submit</button>
+  </head>
+  <body>
+    <form method="dialog">
+      <h1>New book</h1>
+      <button type="button" class="exit">X</button>
+      <div>
+        <label for="bookTitle" name="title">Title</label>
+        <input id="bookTitle" name="title" type="text" required />
+      </div>
+      <div>
+        <label for="bookAuthor">Author</label>
+        <input id="bookAuthor" type="text" required />
+      </div>
+      <div>
+        <label for="bookPages">Number of pages</label>
+        <input id="bookPages" type="number" required />
+      </div>
+      <div>
+        <label for="readStatus">Read</label>
+        <input id="readStatus" type="checkbox" checked />
+      </div>
+      <div>
+        <label for="bookGenre">Genre</label>
+        <input id="bookGenre" type="text" required />
+      </div>
+      <button type="submit">Submit</button>
     </form>
     <button id="add-book">Add book</button>
     <main>
-        <h1 class="header">Library</h1>
-        <div class="book-container"></div>
+      <h1 class="header">Library</h1>
+      <div class="book-container"></div>
     </main>
-</body>
+  </body>
 </html>
